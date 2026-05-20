@@ -3,6 +3,7 @@ import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ZodSerializerDto } from 'nestjs-zod';
 // biome-ignore lint/style/useImportType: AuthService is a runtime DI token
 import { AuthService } from './auth.service';
+// biome-ignore lint/style/useImportType: Dto and schemas are read at runtime
 import {
   LoginRequestDto,
   LoginResponseDto,

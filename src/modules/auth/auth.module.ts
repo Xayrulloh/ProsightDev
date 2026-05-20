@@ -16,11 +16,7 @@ import { AuthService } from './auth.service';
       useFactory: (config: ConfigService<EnvType>) => ({
         secret: config.getOrThrow<string>('JWT_SECRET'),
         signOptions: {
-          // jsonwebtoken's `expiresIn` is typed as a strict ms.StringValue union
-          // (`"1h"`, `"30d"`, ...) which a runtime env string can't satisfy
-          // structurally. The runtime value is valid; we cast to bypass the
-          // overly-strict declaration.
-          // biome-ignore lint/suspicious/noExplicitAny: see comment above
+          // biome-ignore lint/suspicious/noExplicitAny: value is not fully number eg. 1h
           expiresIn: config.getOrThrow<string>('JWT_EXPIRES_IN') as any,
         },
       }),

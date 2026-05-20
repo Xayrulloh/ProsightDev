@@ -11,6 +11,7 @@ import { ZodSerializerDto } from 'nestjs-zod';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import type { AuthenticatedUser } from '../../shared/types/authenticated-request';
+// biome-ignore lint/style/useImportType: Dto and schemas are read at runtime
 import {
   GetLocusQueryDto,
   LocusListResponseDto,

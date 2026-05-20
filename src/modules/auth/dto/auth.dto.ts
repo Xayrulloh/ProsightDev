@@ -16,4 +16,9 @@ const LoginResponseSchema = z.object({
 class LoginRequestDto extends createZodDto(LoginRequestSchema) {}
 class LoginResponseDto extends createZodDto(LoginResponseSchema) {}
 
-export { LoginRequestSchema, LoginResponseSchema, LoginRequestDto, LoginResponseDto };
+export {
+  LoginRequestSchema,
+  LoginResponseSchema,
+  LoginRequestDto,
+  LoginResponseDto,
+};

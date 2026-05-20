@@ -4,13 +4,15 @@ import { LOCUS_SORT_FIELDS } from '../../../utils/constants';
 
 const csvNumbers = z
   .union([z.string(), z.array(z.string())])
-  .optional()
   .transform((v) => {
-    if (v === undefined) return undefined;
     const items = Array.isArray(v) ? v : v.split(',');
-    const parsed = items.map((x) => Number(x)).filter((n) => Number.isFinite(n));
+    const parsed = items
+      .map((x) => Number(x))
+      .filter((n) => Number.isFinite(n));
+
     return parsed.length ? parsed : undefined;
-  });
+  })
+  .optional();
 
 const GetLocusQuerySchema = z.object({
   id: csvNumbers,
@@ -48,12 +50,8 @@ const LocusItemResponseSchema = z.object({
 const LocusListResponseSchema = z.array(LocusItemResponseSchema);
 
 class GetLocusQueryDto extends createZodDto(GetLocusQuerySchema) {}
-class LocusItemResponseDto extends createZodDto(
-  LocusItemResponseSchema,
-) {}
-class LocusListResponseDto extends createZodDto(
-  LocusListResponseSchema,
-) {}
+class LocusItemResponseDto extends createZodDto(LocusItemResponseSchema) {}
+class LocusListResponseDto extends createZodDto(LocusListResponseSchema) {}
 
 export {
   GetLocusQuerySchema,

@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import type { EnvType } from '../config/env/env-validation';
-import { LocusMember } from './entities/locus-member.entity';
 import { Locus } from './entities/locus.entity';
+import { LocusMember } from './entities/locus-member.entity';
 
 @Module({
   imports: [

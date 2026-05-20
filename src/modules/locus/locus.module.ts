@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LocusMember } from '../../database/entities/locus-member.entity';
 import { Locus } from '../../database/entities/locus.entity';
+import { LocusMember } from '../../database/entities/locus-member.entity';
 import { LocusController } from './locus.controller';
 import { LocusService } from './locus.service';
 
