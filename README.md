@@ -20,7 +20,7 @@ pagination, sideloading, and auto-generated Swagger docs.
 ```bash
 pnpm install
 cp .env.example .env       # already points at the public RNAcentral DB
-pnpm start                 # http://localhost:3000/api
+pnpm start                 # http://localhost:5555/api
 ```
 
 ## Quick start (Docker)
@@ -30,12 +30,12 @@ the API container — no local Postgres required.
 
 ```bash
 cp .env.example .env
-docker compose up --build  # http://localhost:3000/api
+docker compose up --build  # http://localhost:5555/api
 ```
 
 The image is built via a multi-stage `Dockerfile` (build → prune dev deps → tiny
 runtime image, ~150 MB on `node:22-alpine`). The compose file reads the host
-`.env`, exposes port 3000, runs as the non-root `node` user, and includes a
+`.env`, exposes port 5555, runs as the non-root `node` user, and includes a
 healthcheck against `GET /api`.
 
 To stop:
@@ -63,7 +63,7 @@ docker compose down
 | `pnpm check`         | Biome: format + lint + import sort (no writes, CI gate) |
 | `pnpm check:write`   | Biome: format + lint + import sort (auto-fix all)       |
 
-Swagger UI: <http://localhost:3000/docs> — basic auth `admin` / `password`.
+Swagger UI: <http://localhost:5555/docs> — basic auth `admin` / `password`.
 
 ## Users (hardcoded, plaintext)
 
@@ -108,7 +108,7 @@ GET  /api/locus        header: Authorization: Bearer <accessToken>
 ## curl walkthrough
 
 ```bash
-BASE=http://localhost:3000/api
+BASE=http://localhost:5555/api
 
 # Login (admin)
 TOKEN=$(curl -s -X POST $BASE/auth/login \
@@ -147,7 +147,7 @@ curl -s "$BASE/locus?pageSize=5&sideload=locusMembers" \
 
 | Var                | Required | Default     | Notes                                          |
 |--------------------|----------|-------------|------------------------------------------------|
-| `PORT`             | no       | `3000`      | Port the API listens on                        |
+| `PORT`             | no       | `5555`      | Port the API listens on                        |
 | `DATABASE_URL`     | yes      | —           | Postgres connection string                     |
 | `JWT_SECRET`       | yes      | —           | ≥16 chars, used to sign access tokens          |
 | `JWT_EXPIRES_IN`   | no       | `1h`        | Any `ms`-compatible duration (`30m`, `7d`, …)  |
